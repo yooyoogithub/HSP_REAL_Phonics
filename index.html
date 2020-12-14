@@ -960,6 +960,11 @@
         let units = document.getElementsByName('unit');
         let unitchoice;
         let bookselected = document.getElementById('book').value;
+        let choiceismade;
+        let whatchosen;
+
+        choiceismade = false;
+        whatchosen = '선택교재 : '+bookselected+' => 선택된 유닛 : ';
 
         //초기화
         for(let i=1;i<selecteditem.length;i++){
@@ -1078,14 +1083,16 @@
           }
 
           // 기타 교재는 여기에....
-
+          choiceismade = true;
+          whatchosen = whatchosen+'전체 유닛';
         }
         // 유닛이 선별적으로 선택되어졌을 때
         else{
           listlength = 1;
-
+          choiceismade=false;
           for(let i = 0; i < units.length-2; i++){
             if(units[i].checked){
+
               if(bookselected=='Alphabet Phonics'){
                 for(let j=0;j<52;j++){
                   if(ap[j][0]==units[i].value){
@@ -1225,11 +1232,24 @@
               //if(bookselected=''){
               //}
 
+              // 선택된 유닛 알아내서 팝업창 표시
+              whatchosen = whatchosen + "Unit "+units[i].value +', ';
+              choiceismade=true;
             }
             //Check가 안되어 있으면 Skip
           }
+
         }
 
+        if(choiceismade){
+          whatchosen=whatchosen.slice(0,-1);
+          whatchosen=whatchosen.slice(0,-1);
+          whatchosen = whatchosen + "입니다.";
+          alert(whatchosen);
+        }
+        else{
+          alert("choice has not been made yet!!");
+        }
       }
 
       // 다음 단어 보기
