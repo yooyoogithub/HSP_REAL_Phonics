@@ -102,70 +102,98 @@
       .count{
         font-size: small;
       }
+
+      .questionimage imge {
+        -webkit-tranform:scale(1);
+        -moz-transform:scale(1);
+        -ms-transform:scale(1);
+        -o-tranform:scale(1);
+        transform: scale(1);
+        -webkit-transition:.3s;
+        -moz-transition:.3s;
+        -ms-transition:.3s;
+        -o-transition:.3s;
+        transition: .3s;
+        overflow: hidden;
+      }
+
+      .questionimage:hover img {
+        -webkit-transform:scale(1.2);
+        -moz-transform:scale(1.2);
+        -ms-transform:scale(1.2);
+        -o-transform:scale(1.2);
+        transform:scale(1.2);
+      }
+
+      /* 정해진 사이즈 안에서 커지는 거
+      .questionimage {
+        overflow:hidden;
+      }
+      */
     </style>
 
     <script type="text/javascript">
-
+      
       // 전체 학습시간을 저장하는 변수
       let StudyStartTime;
       let StudyEndTime;
 
-      //Alphabet Phonics [unit, image, sound, word]
-      let ap = [['1','01.jpg','01.mp3','<font color="red">a<font color="black">pple'],
-                ['1','02.jpg','02.mp3','<font color="red">a<font color="black">nt'],
-                ['1','03.jpg','03.mp3','<font color="red">b<font color="black">ear'],
-                ['1','04.jpg','04.mp3','<font color="red">b<font color="black">ook'],
-                ['2','05.jpg','05.mp3','<font color="red">c<font color="black">at'],
-                ['2','06.jpg','06.mp3','<font color="red">c<font color="black">ake'],
-                ['2','07.jpg','07.mp3','<font color="red">d<font color="black">og'],
-                ['2','08.jpg','08.mp3','<font color="red">d<font color="black">oor'],
-                ['3','09.jpg','09.mp3','<font color="red">e<font color="black">gg'],
-                ['3','10.jpg','10.mp3','<font color="red">e<font color="black">lephant'],
-                ['4','11.jpg','11.mp3','<font color="red">f<font color="black">ish'],
-                ['4','12.jpg','12.mp3','<font color="red">f<font color="black">rog'],
-                ['4','13.jpg','13.mp3','<font color="red">g<font color="black">orilla'],
-                ['4','14.jpg','14.mp3','<font color="red">g<font color="black">old'],
-                ['5','15.jpg','15.mp3','<font color="red">h<font color="black">am'],
-                ['5','16.jpg','16.mp3','<font color="red">h<font color="black">ive'],
-                ['5','17.jpg','17.mp3','<font color="red">i<font color="black">ndian'],
-                ['5','18.jpg','18.mp3','<font color="red">i<font color="black">nk'],
-                ['6','19.jpg','19.mp3','<font color="red">j<font color="black">am'],
-                ['6','20.jpg','20.mp3','<font color="red">j<font color="black">uice'],
-                ['7','21.jpg','21.mp3','<font color="red">k<font color="black">ing'],
-                ['7','22.jpg','22.mp3','<font color="red">k<font color="black">ey'],
-                ['7','23.jpg','23.mp3','<font color="red">l<font color="black">ion'],
-                ['7','24.jpg','24.mp3','<font color="red">l<font color="black">emon'],
-                ['8','25.jpg','25.mp3','<font color="red">m<font color="black">ouse'],
-                ['8','26.jpg','26.mp3','<font color="red">m<font color="black">ilk'],
-                ['8','27.jpg','27.mp3','<font color="red">n<font color="black">apkin'],
-                ['8','28.jpg','28.mp3','<font color="red">n<font color="black">et'],
-                ['9','29.jpg','29.mp3','<font color="red">o<font color="black">x'],
-                ['9','30.jpg','30.mp3','<font color="red">o<font color="black">ctopus'],
-                ['10','31.jpg','31.mp3','<font color="red">p<font color="black">encil'],
-                ['10','32.jpg','32.mp3','<font color="red">p<font color="black">iano'],
-                ['10','33.jpg','33.mp3','<font color="red">q<font color="black">ueen'],
-                ['10','34.jpg','34.mp3','<font color="red">q<font color="black">uilt'],
-                ['11','35.jpg','35.mp3','<font color="red">r<font color="black">abbit'],
-                ['11','36.jpg','36.mp3','<font color="red">r<font color="black">ibbon'],
-                ['11','37.jpg','37.mp3','<font color="red">s<font color="black">chool'],
-                ['11','38.jpg','38.mp3','<font color="red">s<font color="black">poon'],
-                ['12','39.jpg','39.mp3','<font color="red">t<font color="black">en'],
-                ['12','40.jpg','40.mp3','<font color="red">t<font color="black">omato'],
-                ['13','41.jpg','41.mp3','<font color="red">u<font color="black">mbrella'],
-                ['13','42.jpg','42.mp3','<font color="red">u<font color="black">ncle'],
-                ['13','43.jpg','43.mp3','<font color="red">v<font color="black">iolin'],
-                ['13','44.jpg','44.mp3','<font color="red">v<font color="black">est'],
-                ['14','45.jpg','45.mp3','<font color="red">w<font color="black">olf'],
-                ['14','46.jpg','46.mp3','<font color="red">w<font color="black">atch'],
-                ['14','47.jpg','47.mp3','<font color="red">f<font color="black">ox'],
-                ['14','48.jpg','48.mp3','bo<font color="red">x<font color="black">'],
-                ['15','49.jpg','49.mp3','<font color="red">y<font color="black">acht'],
-                ['15','50.jpg','50.mp3','<font color="red">y<font color="black">ellow'],
-                ['15','51.jpg','51.mp3','<font color="red">z<font color="black">ebra'],
-                ['15','52.jpg','52.mp3','<font color="red">z<font color="black">oo']
+      //Alphabet Phonics [unit, image, sound, word, sentence:s or word:w, only word]
+      let ap = [['1','01.jpg','01.mp3','<font color="red">a<font color="black">pple','w','apple'],
+                ['1','02.jpg','02.mp3','<font color="red">a<font color="black">nt','w','ant'],
+                ['1','03.jpg','03.mp3','<font color="red">b<font color="black">ear','w','bear'],
+                ['1','04.jpg','04.mp3','<font color="red">b<font color="black">ook','w','book'],
+                ['2','05.jpg','05.mp3','<font color="red">c<font color="black">at','w','cat'],
+                ['2','06.jpg','06.mp3','<font color="red">c<font color="black">ake','w','cake'],
+                ['2','07.jpg','07.mp3','<font color="red">d<font color="black">og','w','dog'],
+                ['2','08.jpg','08.mp3','<font color="red">d<font color="black">oor','w','door'],
+                ['3','09.jpg','09.mp3','<font color="red">e<font color="black">gg','w','egg'],
+                ['3','10.jpg','10.mp3','<font color="red">e<font color="black">lephant','w','elephant'],
+                ['4','11.jpg','11.mp3','<font color="red">f<font color="black">ish','w','fish'],
+                ['4','12.jpg','12.mp3','<font color="red">f<font color="black">rog','w','frog'],
+                ['4','13.jpg','13.mp3','<font color="red">g<font color="black">orilla','w','gorilla'],
+                ['4','14.jpg','14.mp3','<font color="red">g<font color="black">old','w','gold'],
+                ['5','15.jpg','15.mp3','<font color="red">h<font color="black">am','w','ham'],
+                ['5','16.jpg','16.mp3','<font color="red">h<font color="black">ive','w','hive'],
+                ['5','17.jpg','17.mp3','<font color="red">i<font color="black">ndian','w','indian'],
+                ['5','18.jpg','18.mp3','<font color="red">i<font color="black">nk','w','ink'],
+                ['6','19.jpg','19.mp3','<font color="red">j<font color="black">am','w','jam'],
+                ['6','20.jpg','20.mp3','<font color="red">j<font color="black">uice','w','juice'],
+                ['7','21.jpg','21.mp3','<font color="red">k<font color="black">ing','w','king'],
+                ['7','22.jpg','22.mp3','<font color="red">k<font color="black">ey','w','key'],
+                ['7','23.jpg','23.mp3','<font color="red">l<font color="black">ion','w','lion'],
+                ['7','24.jpg','24.mp3','<font color="red">l<font color="black">emon','w','lemon'],
+                ['8','25.jpg','25.mp3','<font color="red">m<font color="black">ouse','w','mouse'],
+                ['8','26.jpg','26.mp3','<font color="red">m<font color="black">ilk','w','milk'],
+                ['8','27.jpg','27.mp3','<font color="red">n<font color="black">apkin','w','napkin'],
+                ['8','28.jpg','28.mp3','<font color="red">n<font color="black">et','w','net'],
+                ['9','29.jpg','29.mp3','<font color="red">o<font color="black">x','w','ox'],
+                ['9','30.jpg','30.mp3','<font color="red">o<font color="black">ctopus','w','octopus'],
+                ['10','31.jpg','31.mp3','<font color="red">p<font color="black">encil','w','pencil'],
+                ['10','32.jpg','32.mp3','<font color="red">p<font color="black">iano','w','piano'],
+                ['10','33.jpg','33.mp3','<font color="red">q<font color="black">ueen','w','queen'],
+                ['10','34.jpg','34.mp3','<font color="red">q<font color="black">uilt','w','quilt'],
+                ['11','35.jpg','35.mp3','<font color="red">r<font color="black">abbit','w','rabbit'],
+                ['11','36.jpg','36.mp3','<font color="red">r<font color="black">ibbon','w','ribbon'],
+                ['11','37.jpg','37.mp3','<font color="red">s<font color="black">chool','w','school'],
+                ['11','38.jpg','38.mp3','<font color="red">s<font color="black">poon','w','spoon'],
+                ['12','39.jpg','39.mp3','<font color="red">t<font color="black">en','w','ten'],
+                ['12','40.jpg','40.mp3','<font color="red">t<font color="black">omato','w','tomato'],
+                ['13','41.jpg','41.mp3','<font color="red">u<font color="black">mbrella','w','umbrella'],
+                ['13','42.jpg','42.mp3','<font color="red">u<font color="black">ncle','w','uncle'],
+                ['13','43.jpg','43.mp3','<font color="red">v<font color="black">iolin','w','violin'],
+                ['13','44.jpg','44.mp3','<font color="red">v<font color="black">est','w','vest'],
+                ['14','45.jpg','45.mp3','<font color="red">w<font color="black">olf','w','wolf'],
+                ['14','46.jpg','46.mp3','<font color="red">w<font color="black">atch','w','watch'],
+                ['14','47.jpg','47.mp3','<font color="red">f<font color="black">ox','w','fox'],
+                ['14','48.jpg','48.mp3','bo<font color="red">x<font color="black">','w','box'],
+                ['15','49.jpg','49.mp3','<font color="red">y<font color="black">acht','w','yacht'],
+                ['15','50.jpg','50.mp3','<font color="red">y<font color="black">ellow','w','yellow'],
+                ['15','51.jpg','51.mp3','<font color="red">z<font color="black">ebra','w','zebra'],
+                ['15','52.jpg','52.mp3','<font color="red">z<font color="black">oo','w','zoo']
               ];
 
-      //Easy Phonics [unit, image, sound, word]
+      //Easy Phonics [unit, image, sound, word, sentence:s or word:w, only word]
       let ep = [['1','1.PNG','1.mp3','<font color="red">a<font color="black">nt'],
                 ['1','2.PNG','2.mp3','<font color="red">a<font color="black">pple'],
                 ['1','3.PNG','3.mp3','s<font color="red">a<font color="black">d'],
@@ -325,7 +353,7 @@
                 ['13','157.PNG','157.mp3','brid<font color="red">g<font color="black">e']
               ];
 
-      //Easy Phonics Plus [unit, image, sound, word]
+      //Easy Phonics Plus [unit, image, sound, word, sentence:s or word:w, only word]
       let epp = [['1','1.PNG','1.mp3','c<font color="red">a<font color="black">n<font color="red">e'],
                 ['1','2.PNG','2.mp3','c<font color="red">a<font color="black">av<font color="red">e'],
                 ['1','3.PNG','3.mp3','l<font color="red">a<font color="black">k<font color="red">e'],
@@ -478,7 +506,7 @@
                 ['15','1520.PNG','1520.mp3','<p style="font-size:30px;text-align:center;line-height:1.5;">An elephant goes to the sea.<br>Are you a whale?<br>No, I’m not. I am a dolphin.<br>The elephant looks at a white whale.<br>The elephant takes a photo by the wheat.</p>']
               ];
 
-      // Phonics Fun 1 [unit, image, sound, word]
+      // Phonics Fun 1 [unit, image, sound, word, sentence:s or word:w, only word]
       let pf1 = [['1','01.PNG','01.mp3','<font color="red">a<font color="black">nt'],
                 ['1','02.PNG','02.mp3','<font color="red">a<font color="black">pple'],
                 ['1','03.PNG','03.mp3','<font color="red">a<font color="black">x'],
@@ -536,7 +564,7 @@
                 ['14','55.PNG','55.mp3','<font color="red">qu<font color="black">ilt']
                 ];
 
-      // Phonics Fun 2 [unit, image, sound, word]
+      // Phonics Fun 2 [unit, image, sound, word, sentence:s or word:w, only word]
       let pf2 = [['1','01.PNG','01.mp3','c<font color="red">a<font color="black">n<font color="red">e'],
                 ['1','02.PNG','02.mp3','l<font color="red">a<font color="black">k<font color="red">e'],
                 ['1','03.PNG','03.mp3','v<font color="red">a<font color="black">s<font color="red">e'],
@@ -615,7 +643,7 @@
                 ['14','76.PNG','76.mp3','<font color="red">st<font color="black">one']
                 ];
 
-      // Phonics Fun 3 [unit, image, sound, word]
+      // Phonics Fun 3 [unit, image, sound, word, sentence:s or word:w, only word]
       let pf3 = [['1','01.PNG','01.mp3','sea<font color="red">l'],
                 ['1','02.PNG','02.mp3','mai<font color="red">l'],
                 ['1','03.PNG','03.mp3','ra<font color="red">m'],
@@ -696,7 +724,7 @@
                 ['14','78.PNG','78.mp3','lo<font color="red">ck']
                 ];
 
-      // Phonics Town 1 [unit, image, sound, word]
+      // Phonics Town 1 [unit, image, sound, word, sentence:s or word:w, only word]
       let pt1 = [['1','001.PNG','001.mp3','<font size="7">bear, big, banana, bubble</font>'],
                 ['1','002.PNG','002.mp3','<font size="7">pig, pink, pie, pretty</font>'],
                 ['1','003.PNG','003.mp3','<font size="7">hen, hill, house, hat</font>'],
@@ -786,7 +814,7 @@
 
                 ];
 
-      // Phonics Town 2 [unit, image, sound, word]
+      // Phonics Town 2 [unit, image, sound, word, sentence:s or word:w, only word]
       let pt2 = [['1','001.PNG','001.mp3','<font size="7">lamb, long, log, ladder</font>'],
                   ['1','002.PNG','002.mp3','<font size="7">raccon, river, rain, rainbow</font>'],
                   ['1','003.PNG','003.mp3','<font size="7">yard, yak, yellow, yarn</font>'],
@@ -876,7 +904,7 @@
                   ['15','212.PNG','208.mp3','<p style="font-size:30px;text-align:center;line-height:1.5;">6대의 자동차들이 그 태양 아래에 있습니다.<br>그 얼룩말은 그 자동차에서 노래합니다.<br>그 사욕사는 그 동물원에 있습니다.<br>그 여우는 그 상자 위에서 노래합니다.</p>']
                 ];
 
-      // Phonics Town 3 [unit, image, sound, word]
+      // Phonics Town 3 [unit, image, sound, word, sentence:s or word:w, only word]
       let pt3 = [['1','001.PNG','001.mp3','<font size="7">monkey, mole, mirror, make</font>'],
                 ['1','002.PNG','002.mp3','<font size="7">nut, necktie, nest, noise</font>'],
                 ['1','003.PNG','003.mp3','<font size="7">rabbit, angry, hat, happy</font>'],
@@ -960,7 +988,7 @@
 
                 ];
 
-      // Theme English 1 [unit, image, sound, word]
+      // Theme English 1 [unit, image, sound, word, sentence:s or word:w, only word]
       let te1 = [
                   ['1','011.PNG','011.mp3','doll'],
                   ['1','012.PNG','012.mp3','car'],
@@ -1049,7 +1077,7 @@
 
                 ];
 
-      // Theme English 2 [unit, image, sound, word]
+      // Theme English 2 [unit, image, sound, word, sentence:s or word:w, only word]
       let te2 = [['1','011.PNG','011.mp3','jacket'],
                 ['1','012.PNG','012.mp3','sweater'],
                 ['1','013.PNG','013.mp3','shirt'],
@@ -1136,7 +1164,7 @@
 
                 ];
 
-      // Theme English 3 [unit, image, sound, word]
+      // Theme English 3 [unit, image, sound, word, sentence:s or word:w, only word]
       let te3 = [['1','11.jpg','01.mp3','father'],
                 ['1','12.jpg','02.mp3','mother'],
                 ['1','13.jpg','03.mp3','grandfather'],
@@ -1163,7 +1191,7 @@
                 ['4','46.jpg','24.mp3','head']
                 ];
 
-      // Theme English 4 [unit, image, sound, word]
+      // Theme English 4 [unit, image, sound, word, sentence:s or word:w, only word]
       let te4 = [['1','11.jpg','01.mp3','bedroom'],
                 ['1','12.jpg','02.mp3','bathroom'],
                 ['1','13.jpg','03.mp3','kitchen'],
@@ -1187,7 +1215,7 @@
                 ['4','46.jpg','21.mp3','shower']
                 ];
 
-      // Theme English 5 [unit, image, sound, word]
+      // Theme English 5 [unit, image, sound, word, sentence:s or word:w, only word]
       let te5 = [['1','11.jpg','1.mp3','carrot'],
                 ['1','12.jpg','2.mp3','potato'],
                 ['1','13.jpg','3.mp3','cucumber'],
@@ -1213,7 +1241,7 @@
                 ['4','45.jpg','23.mp3','icecream']
                 ];
 
-      // Theme English 6 [unit, image, sound, word]
+      // Theme English 6 [unit, image, sound, word, sentence:s or word:w, only word]
       let te6 = [['1','11.jpg','01.mp3','dog'],
                 ['1','12.jpg','02.mp3','cat'],
                 ['1','13.jpg','03.mp3','bird'],
@@ -1241,7 +1269,7 @@
                 ];
 
       // 선택된 아이템을 담을 변수
-      let selecteditem=[['0','0','0','0']];
+      let selecteditem=[['0','0','0','0','0']];
 
       //선택된 아이템의 갯수
       let listlength;
@@ -1261,6 +1289,7 @@
 
         let bookselected = document.getElementById('book').value;
 
+        if(choiceismade){
         count--;
         myaudio.src = bookselected + '/' + selecteditem[count][2];
         count++;
@@ -1270,6 +1299,10 @@
         //whileplay.disabled = true;
         myaudio.play();
         //whileplay.disabled = false;
+        }
+        else{
+          alert("교재와 유닛을 먼저 선택하셔야 합니다.");
+        }
       }
 
       function stopAudio(){
@@ -1280,13 +1313,15 @@
       //선택된 책과 유닛들의 문자열
       let whatchosen;
 
+      //선택의 유무
+      let choiceismade;
+
       // 선택된 책과 유닛 알아내는 함수
       function Getunits(){
         let units = document.getElementsByName('unit');
         let unitchoice;
         let bookselected = document.getElementById('book').value;
-        let choiceismade;
-
+        
         choiceismade = false;
         whatchosen = '선택교재 : '+bookselected+' => 선택된 유닛 : ';
 
@@ -1325,6 +1360,14 @@
         for(let i=1;i<selecteditem.length;i++){
           selecteditem.splice(1,listlength);
         }
+
+        for(let i=1;i<playunitinfo.length;i++){
+          playunitinfo.splice(1,playunitinfo.length);
+        }
+
+        Stopplaygame();
+
+        document.getElementById("image").innerHTML='<img id="images" src = "Hanna.png" width="400px" height="400px">';
 
         //시작
         if(units[units.length-1].checked){
@@ -1604,6 +1647,7 @@
         }
         else{
           alert("choice has not been made yet!!");
+          
         }
       }
 
@@ -1614,6 +1658,9 @@
           let chosenword = document.getElementById("wordshow");
 
           let units = document.getElementById('np');
+
+          if(choiceismade){
+
 
           //플레이되는 오디오가 있으면 Stop
           stopAudio();
@@ -1653,16 +1700,25 @@
             imgtag.src = bookselected + '/' + selecteditem[count][1];
           }
           count++;
+          }
+          else{
+            alert("교재와 유닛을 먼저 선택하셔야 합니다.");
+          }
+        
       }
 
       // 단어 보여주기
       function ShowWord(){
         let chosenword = document.getElementById("wordshow");
-
+        if(choiceismade){
         count--;
         chosenword.innerHTML=selecteditem[count][3];
         //chosenword.innerText=selecteditem[count][3];
         count++;
+        }
+        else{
+            alert("교재와 유닛을 먼저 선택하셔야 합니다.");
+        }
       }
 
       // 학습 결과 전송
@@ -1706,6 +1762,14 @@
       // 처음 접속이라는 걸 인지
       let isitfirst = true;
 
+      //문제 정답 숫자를 담는 변수
+      let answer = 0;
+      let useranswer = 0;
+
+      //총문제수와 정답을 대답한 갯수를 담는 변수
+      let correctanswer = 0;
+      let totalproblem = 0;
+
       // 접속시간표시
       function getCurrentTime(){
         let currentDate = new Date();
@@ -1740,6 +1804,264 @@
         setTimeout(getCurrentTime,1000);
       }
 
+      // 게임을 위한 선택된 단어에 대한 정보 배열 [book, unit, image, sound, word, sentence:s or word:w]
+      let playunitinfo = [['0','0','0','0','0','0']];
+      // 확인학습 진입
+      function Playgame(){
+
+        if(choiceismade){
+          if(document.getElementById("book").value=="Alphabet Phonics"){
+            if(repeatcount>=1){
+              let playgamebutton = document.getElementById('playgame');
+              
+              //초기화
+              for(let i=1;i<playunitinfo.length;i++){
+                playunitinfo.splice(1,1);
+              }
+                
+              // 게임할 배열들만 옮김
+              for(let i=1;i<selecteditem.length;i++){
+                if(selecteditem[i][4]=='w'){
+                  playunitinfo.push([document.getElementById('book').value,selecteditem[i][0],selecteditem[i][1],selecteditem[i][2],selecteditem[i][3],selecteditem[i][4]]);
+                }
+              }
+              
+              Buttondisable();
+
+              playgamebutton.value = "그만하기";
+              playgamebutton.setAttribute("onClick","Stopplaygame()");
+              
+              //게임시작
+
+              totalproblem = 0;
+              correctanswer = 0;
+
+              nextgame();  
+            }
+            else{
+              alert("유닛학습을 1회 이상 수행하셔야 확인학습을 진행할수 있습니다.");
+            }
+          }
+          else{
+            alert("현재는 Alphabet Phonics 만 이 기능을 지원합니다.")
+          }
+        }
+        else{
+          alert("교재와 유닛을 먼저 선택하셔야 합니다.");
+        }
+        
+      }
+
+      //해당 문제의 mp3파일의 전체 경로
+      let problemaudiosource;
+
+      // 확인학습 시작
+      function nextgame(){
+          //들려주는 단어 듣고 해당하는 그림 맞추기
+          totalproblem++;
+          let uppertext = document.getElementById('uppertext');
+          let belowtext = document.getElementById('wordshow');
+
+          let questiontext = "<h1>"+"여기에는 문제가 나갑니다."+"</h1>";
+          let belowbutton = "여기는 결과가 나옵니다.";
+
+          let q1, q2, q3, q4, centerquestionimage;
+
+          let tempplayui = [['0','0','0','0','0','0']];
+
+          for(let i=1;i<tempplayui.length;i++){
+            tempplayui.splice(i,1);
+          }
+
+          for(let i=1;i<playunitinfo.length;i++){
+            tempplayui.push(playunitinfo[i]);
+          }
+
+          //문제출제
+          questiontext = '<h1>'+'아래 버튼을 눌르면 들려주는 단어를 찾아 클릭하세요.'+'</h1>'
+          belowbutton = '<input type="button" style="height:35px;" value="준비되면 누르세요." onclick="playquestion()">';
+          
+          uppertext.innerHTML = questiontext;
+          belowtext.innerHTML = belowbutton;
+
+          // 총 단어수 중 랜덤선택
+          let randnum = Math.random()*(playunitinfo.length-1);
+          randnum = Math.floor(randnum)+1;
+
+          // 1,2,3,4번중에 어디에 정답을 포함시킬껀지를 랜덤으로 선택
+          let randnum2 = Math.random()*4;
+          randnum2 = Math.floor(randnum2)+1;
+
+         //randnum2 = 1;
+          if(randnum2==1){
+            q1 = tempplayui[randnum][0]+'/'+tempplayui[randnum][2];
+            problemaudiosource = tempplayui[randnum][0]+'/'+tempplayui[randnum][3];
+            tempplayui.splice(randnum,1);
+
+            randnum = Math.random()*(tempplayui.length-1);
+            randnum = Math.floor(randnum)+1;
+            q2 = tempplayui[randnum][0]+'/'+tempplayui[randnum][2];
+            tempplayui.splice(randnum,1);
+
+            randnum = Math.random()*(tempplayui.length-1);
+            randnum = Math.floor(randnum)+1;            
+            q3 = tempplayui[randnum][0]+'/'+tempplayui[randnum][2];
+            tempplayui.splice(randnum,1);
+
+            randnum = Math.random()*(tempplayui.length-1);
+            randnum = Math.floor(randnum)+1;            
+            q4 = tempplayui[randnum][0]+'/'+tempplayui[randnum][2];
+            tempplayui.splice(randnum,1);
+          }
+          else if(randnum2==2){
+            q2 = tempplayui[randnum][0]+'/'+tempplayui[randnum][2];
+            problemaudiosource = tempplayui[randnum][0]+'/'+tempplayui[randnum][3];
+            tempplayui.splice(randnum,1);
+
+            randnum = Math.random()*(tempplayui.length-1);
+            randnum = Math.floor(randnum)+1;
+            q1 = tempplayui[randnum][0]+'/'+tempplayui[randnum][2];
+            tempplayui.splice(randnum,1);
+
+            randnum = Math.random()*(tempplayui.length-1);
+            randnum = Math.floor(randnum)+1;            
+            q3 = tempplayui[randnum][0]+'/'+tempplayui[randnum][2];
+            tempplayui.splice(randnum,1);
+
+            randnum = Math.random()*(tempplayui.length-1);
+            randnum = Math.floor(randnum)+1;            
+            q4 = tempplayui[randnum][0]+'/'+tempplayui[randnum][2]; 
+            tempplayui.splice(randnum,1);
+          }
+          else if(randnum2==3){
+            q3 = tempplayui[randnum][0]+'/'+tempplayui[randnum][2];
+            problemaudiosource = tempplayui[randnum][0]+'/'+tempplayui[randnum][3];
+            tempplayui.splice(randnum,1);
+
+            randnum = Math.random()*(tempplayui.length-1);
+            randnum = Math.floor(randnum)+1;
+            q1 = tempplayui[randnum][0]+'/'+tempplayui[randnum][2];
+            tempplayui.splice(randnum,1);
+
+            randnum = Math.random()*(tempplayui.length-1);
+            randnum = Math.floor(randnum)+1;            
+            q2 = tempplayui[randnum][0]+'/'+tempplayui[randnum][2];
+            tempplayui.splice(randnum,1);
+
+            randnum = Math.random()*(tempplayui.length-1);
+            randnum = Math.floor(randnum)+1;            
+            q4 = tempplayui[randnum][0]+'/'+tempplayui[randnum][2]; 
+            tempplayui.splice(randnum,1);
+          }
+          else
+          {
+            q4 = tempplayui[randnum][0]+'/'+tempplayui[randnum][2];
+            problemaudiosource = tempplayui[randnum][0]+'/'+tempplayui[randnum][3];
+            tempplayui.splice(randnum,1);
+
+            randnum = Math.random()*(tempplayui.length-1);
+            randnum = Math.floor(randnum)+1;
+            q1 = tempplayui[randnum][0]+'/'+tempplayui[randnum][2];
+            tempplayui.splice(randnum,1);
+
+            randnum = Math.random()*(tempplayui.length-1);
+            randnum = Math.floor(randnum)+1;            
+            q2 = tempplayui[randnum][0]+'/'+tempplayui[randnum][2];
+            tempplayui.splice(randnum,1);
+
+            randnum = Math.random()*(tempplayui.length-1);
+            randnum = Math.floor(randnum)+1;            
+            q3 = tempplayui[randnum][0]+'/'+tempplayui[randnum][2]; 
+            tempplayui.splice(randnum,1);
+          }
+
+          centerquestionimage = '<span class="questionimage">1<img src="'+q1+'" width="200px" height="190px" onclick="imageclick(1)"></span>'
+            +'<span class="questionimage">2<img src="'+q2+'"width="200px" height="190px" onclick="imageclick(2)"></span>'
+            +'<div> ---- </div>'
+            +'<span class="questionimage">3<img src="'+q3+'" width="200px" height="190px" onclick="imageclick(3)"></span>'
+            +'<span class="questionimage">4<img src="'+q4+'" width="200px" height="190px" onclick="imageclick(4)"></span>';
+
+          // 그림출력
+          document.all("image").innerHTML = centerquestionimage;
+
+          // 정답 입력
+          answer = randnum2;
+      }
+
+      //문제음성출력
+      function playquestion(){
+        myaudio.src = problemaudiosource;
+        myaudio.play();
+      }
+
+      //정답을 확인해서 표시하는 함수
+      function imageclick(theanswer){
+        stopAudio();
+        useranswer = theanswer;     
+        if(answer!=0){
+          if(answer==useranswer){
+            correctanswer++;
+            document.getElementById('playscore').innerHTML = totalproblem + "개 중 <br>"+correctanswer+"개 정답";
+            //let interval = setInterval('oxdisplay("정답입니다~^^")',200);
+            //setTimeout(function(){clearInterval(interval);},3000);
+            alert("정답입니다~~^^");
+            nextgame();
+          }
+          else{
+            document.getElementById('playscore').innerHTML = totalproblem + "개 중 <br>"+correctanswer+"개 정답";
+            //let interval = setInterval('oxdisplay("아쉽게 틀렸어요...ㅠㅠ")',200);
+            //setTimeout(function(){clearInterval(interval);},3000);
+            alert("아쉬워요, 틀렸어요....ㅠㅠ");
+            nextgame();            
+          }
+        }
+        else{
+          alert("아직 문제가 출제되지 않았거나, 정답이 정해지지 않았습니다.");
+        }
+      }
+
+      // 깜빡이기 위한 변수
+      //let print=true;
+      // 정답, 오답 결과를 깜빡이며 나타내 줌.
+      //function oxdisplay(result){
+      //  if(print){
+      //    document.getElementById('wordshow').innerHTML = result;
+      //  }
+      //  else{
+      //    document.getElementById('wordshow').innerHTML = "<div style='background-color:beige;color:beige;'>----</div>";
+      //  }
+      //  print = !print;
+      //}
+      
+      //확인학습 그만둘때 호출되는 함수
+      function Stopplaygame(){
+        let playgamebutton = document.getElementById('playgame');
+        
+        Buttonenable();
+
+        playgamebutton.value = "확인학습";
+        playgamebutton.setAttribute("onClick","Playgame()");
+
+        //여기에 초기화면으로 바꾸기
+        let uppertext = document.getElementById('uppertext');
+        let belowtext = document.getElementById('wordshow');
+
+        uppertext.innerHTML = "<h1>Say What it is!!</h1>";
+        belowtext.innerHTML = "Tell me What it is!!!!";
+      }
+
+      function Buttondisable(){
+        document.getElementById("playword").disabled = true;
+        document.getElementById("showword").disabled = true;
+        document.getElementById("nextbutton").disabled = true;
+        
+      }
+
+      function Buttonenable(){
+        document.getElementById("playword").disabled = false;
+        document.getElementById("showword").disabled = false;
+        document.getElementById("nextbutton").disabled = false;
+      }
     </script>
   </head>
   <body onload="getCurrentTime()">
@@ -1820,20 +2142,21 @@
           <div class="count" id="endstudytime"></div>
           <div class="count" id="realstudytime"></div>
           <hr>
-          <br>
           <div style="background-color: beige;">반복횟수</div>
           <div id="repeat"></div>
           <hr>
           <div id="repeatnumber"></div>
           <hr>
-          <br>
+          <div style="background-color: beige;">확인학습점수</div>
+          <div id="playscore"></div>
+          <hr>
           <div>
             <input type="button" style="width: 100px;height: 40px;" value="학습시간보기" name="sendresult" onclick="SendResult()">
           </div>
         </aside>
 
         <div class="container">
-          <div class="title">
+          <div class="title" id="uppertext">
             <h1>Say What it is!!</h1>
           </div>
           <div id="image">
@@ -1843,9 +2166,10 @@
             <h1 id="wordshow">Tell me What it is!!!</h1>
           </div>
           <div class="button">
-            <input class="realbutton" type="button" value="발음듣기" onclick="PlayWord()">
-            <input class="realbutton" type="button" value="단어보기" onClick="ShowWord()">
+            <input class="realbutton" type="button" id="playword" value="발음듣기" onclick="PlayWord()">
+            <input class="realbutton" type="button" id="showword"value="단어보기" onClick="ShowWord()">
             <input class="realbutton" type="button" id="nextbutton" value="다음" onClick="NextWord()">
+            <input class="realbutton" type="button" id="playgame" value="확인학습" onclick="Playgame()">
           </div>
         </div>
 
