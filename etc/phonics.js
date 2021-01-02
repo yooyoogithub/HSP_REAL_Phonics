@@ -1961,7 +1961,7 @@
 
           let tempplayui = [['0','0','0','0','0','0','0','0']];
 
-          for(let i=1;i<tempplayui.length;i++){
+          for(let i=1;i<tempplayui.length;){
             tempplayui.splice(i,1);
           }
 
