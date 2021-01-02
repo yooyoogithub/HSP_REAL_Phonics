@@ -1763,7 +1763,7 @@
             let tellrepeat="";
 
             tellrepeat = tellrepeat + bookselected + "<br>";
-            for(let i=0;i<units.length;i++){
+            for(let i=1;i<units.length;){
               if(units[i].checked)
               tellrepeat+="Unit"+units[i].value+',';
             }
@@ -1959,7 +1959,7 @@
 
           let q1, q2, q3, q4, centerquestionimage;
 
-          let tempplayui = [['0','0','0','0','0','0']];
+          let tempplayui = [['0','0','0','0','0','0','0','0']];
 
           for(let i=1;i<tempplayui.length;i++){
             tempplayui.splice(i,1);
